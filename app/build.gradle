@@ -29,11 +29,12 @@ android {
 
     buildTypes {
         debug {
-            signingConfig signingConfigs.release
+            // 先用 debug 签名出测试包
         }
         release {
             minifyEnabled false
-            signingConfig signingConfigs.release
+            // TODO: 加 keystore secret 后启用
+            // signingConfig signingConfigs.release
         }
     }
 

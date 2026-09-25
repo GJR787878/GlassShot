@@ -136,7 +136,8 @@ public class ScreenshotService extends Service {
     private void createNotification() {
         String ch = "glassshot";
         NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        nm.createNotificationChannel(ch, "GlassShot", NotificationManager.IMPORTANCE_LOW);
+        NotificationChannel channel = new NotificationChannel(ch, "GlassShot", NotificationManager.IMPORTANCE_LOW);
+        nm.createNotificationChannel(channel);
         Notification n = new Notification.Builder(this, ch)
                 .setContentTitle("GlassShot 运行中")
                 .setSmallIcon(android.R.drawable.ic_menu_camera)

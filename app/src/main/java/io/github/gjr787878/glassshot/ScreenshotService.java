@@ -135,7 +135,7 @@ public class ScreenshotService extends Service {
 
     private void createNotification() {
         String ch = "glassshot";
-        NotificationManager nm = getSystemService(NotificationManager.class);
+        NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         nm.createNotificationChannel(ch, "GlassShot", NotificationManager.IMPORTANCE_LOW);
         Notification n = new Notification.Builder(this, ch)
                 .setContentTitle("GlassShot 运行中")

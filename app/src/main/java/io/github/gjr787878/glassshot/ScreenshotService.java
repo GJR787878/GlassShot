@@ -26,7 +26,7 @@ public class ScreenshotService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        startForeground(1, buildNotification());
+        startForeground(1, buildNotification(), android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE);
     }
 
     @Override

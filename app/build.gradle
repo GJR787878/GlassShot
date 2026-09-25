@@ -1,0 +1,49 @@
+plugins {
+    id 'com.android.application'
+}
+
+// 统一签名：本地与CI使用同一keystore，保证覆盖安装/升级
+def keystorePath = System.getenv("DRS_KEYSTORE_PATH") ?: "keystore/ramstatusbar-release.keystore"
+def keystorePass = System.getenv("DRS_KEYSTORE_PASS") ?: "DRS_Key_2026!"
+
+android {
+    namespace 'io.github.gjr787878.glassshot'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "io.github.gjr787878.glassshot"
+        minSdk 31
+        targetSdk 34
+        versionCode 1
+        versionName "1.0.0"
+    }
+
+    signingConfigs {
+        release {
+            storeFile rootProject.file(keystorePath)
+            storePassword keystorePass
+            keyAlias "devicereset"
+            keyPassword keystorePass
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.release
+        }
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core:1.12.0'
+    implementation 'com.github.GJR787878:GlassButtons:v1.0.4'
+}
